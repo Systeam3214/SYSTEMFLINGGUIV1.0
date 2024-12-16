@@ -1,0 +1,155 @@
+-- Touch fling gui
+
+-- Gui to Lua (VIP VERSION)
+-- Version: 6.9
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+local Frame_2 = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local UICornerButton = Instance.new("UICorner")
+local UIGradientButton = Instance.new("UIGradient")
+local VersionLabel = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+print("sub to DuplexScripts")
+
+-- Frame principal com gradiente e bordas arredondadas
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.388539821, 0, 0.427821517, 0)
+Frame.Size = UDim2.new(0, 158, 0, 110)
+
+UICorner.Parent = Frame
+UICorner.CornerRadius = UDim.new(0, 10) -- Bordas arredondadas
+
+UIGradient.Parent = Frame
+UIGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(10, 10, 10)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 30))
+}
+
+-- Frame do cabeçalho
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame_2.BorderSizePixel = 0
+Frame_2.Size = UDim2.new(0, 158, 0, 25)
+
+TextLabel.Parent = Frame_2
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.112792775, 0, -0.0151660154, 0)
+TextLabel.Size = UDim2.new(0, 121, 0, 26)
+TextLabel.Font = Enum.Font.Sarpanch
+TextLabel.Text = "System FLING"
+TextLabel.TextColor3 = Color3.fromRGB(200, 0, 0) -- Vermelho escuro para um visual mais brutal
+TextLabel.TextSize = 25.000
+TextLabel.TextScaled = true
+
+-- Botão com gradiente e bordas arredondadas
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(50, 0, 0) -- Tom escuro para o botão
+TextButton.BorderColor3 = Color3.fromRGB(255, 0, 0) -- Contorno vermelho para contraste
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.113924049, 0, 0.418181807, 0)
+TextButton.Size = UDim2.new(0, 121, 0, 37)
+TextButton.Font = Enum.Font.SourceSansItalic
+TextButton.Text = "OFF"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextSize = 20.000
+TextButton.TextScaled = true
+
+UICornerButton.Parent = TextButton
+UICornerButton.CornerRadius = UDim.new(0, 8) -- Bordas arredondadas no botão
+
+UIGradientButton.Parent = TextButton
+UIGradientButton.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(70, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(140, 0, 0))
+}
+
+-- Versão no canto inferior direito
+VersionLabel.Parent = Frame
+VersionLabel.BackgroundTransparency = 1.000
+VersionLabel.Position = UDim2.new(0.75, 0, 0.85, 0)
+VersionLabel.Size = UDim2.new(0, 40, 0, 15)
+VersionLabel.Font = Enum.Font.SourceSansItalic
+VersionLabel.Text = "V 1.0"
+VersionLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
+VersionLabel.TextSize = 12.000
+
+-- Scripts:
+
+local function IIMAWH_fake_script() -- TextButton.LocalScript 
+    local script = Instance.new('LocalScript', TextButton)
+
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local RunService = game:GetService("RunService")
+    local Players = game:GetService("Players")
+    
+    local toggleButton = script.Parent
+    local hiddenfling = false
+    local flingThread 
+    if not ReplicatedStorage:FindFirstChild("juisdfj0i32i0eidsuf0iok") then
+        local detection = Instance.new("Decal")
+        detection.Name = "juisdfj0i32i0eidsuf0iok"
+        detection.Parent = ReplicatedStorage
+    end
+    
+    local function fling()
+        local lp = Players.LocalPlayer
+        local c, hrp, vel, movel = nil, nil, nil, 10 -- Aumentei o movel para 10
+    
+        while hiddenfling do
+            RunService.Heartbeat:Wait()
+            c = lp.Character
+            hrp = c and c:FindFirstChild("HumanoidRootPart")
+    
+            if hrp then
+                vel = hrp.Velocity
+                hrp.Velocity = vel * 150000 + Vector3.new(math.random(-100000, 100000), 150000, math.random(-100000, 100000))
+                RunService.RenderStepped:Wait()
+                hrp.Velocity = vel
+                RunService.Stepped:Wait()
+                hrp.Velocity = vel + Vector3.new(0, movel, 0)
+                movel = -movel
+            end
+        end
+    end
+    
+    toggleButton.MouseButton1Click:Connect(function()
+        hiddenfling = not hiddenfling
+        toggleButton.Text = hiddenfling and "ON" or "OFF"
+    
+        if hiddenfling then
+            flingThread = coroutine.create(fling)
+            coroutine.resume(flingThread)
+        else
+            hiddenfling = false
+        end
+    end)
+    
+end
+coroutine.wrap(IIMAWH_fake_script)()
+
+local function QCJQJL_fake_script() -- Frame.LocalScript 
+    local script = Instance.new('LocalScript', Frame)
+
+    script.Parent.Active = true
+    script.Parent.Draggable = true
+end
+coroutine.wrap(QCJQJL_fake_script)()
