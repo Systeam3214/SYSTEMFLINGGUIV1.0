@@ -1,7 +1,5 @@
--- Touch fling gui
-
--- Gui to Lua (VIP VERSION)
--- Version: 6.9
+-- Gui to Lua
+-- Version: 1.1
 
 -- Instances:
 
@@ -10,89 +8,106 @@ local Frame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
 local UIGradient = Instance.new("UIGradient")
 local Frame_2 = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
+local TitleLabel = Instance.new("TextLabel")
+local CloseButton = Instance.new("TextButton") -- Botão de Fechar
+local MinimizeButton = Instance.new("TextButton") -- Botão de Minimizar
 local TextButton = Instance.new("TextButton")
 local UICornerButton = Instance.new("UICorner")
 local UIGradientButton = Instance.new("UIGradient")
 local VersionLabel = Instance.new("TextLabel")
 
---Properties:
+-- Properties:
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
-print("sub to DuplexScripts")
 
--- Frame principal com gradiente e bordas arredondadas
+-- Frame principal com tema claro
 Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(240, 240, 240)
+Frame.BorderColor3 = Color3.fromRGB(200, 200, 200)
 Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.388539821, 0, 0.427821517, 0)
+Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
 Frame.Size = UDim2.new(0, 158, 0, 110)
+Frame.Active = true
+Frame.Draggable = true
 
 UICorner.Parent = Frame
-UICorner.CornerRadius = UDim.new(0, 10) -- Bordas arredondadas
+UICorner.CornerRadius = UDim.new(0, 10)
 
 UIGradient.Parent = Frame
 UIGradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(10, 10, 10)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 30))
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(230, 230, 230))
 }
 
 -- Frame do cabeçalho
 Frame_2.Parent = Frame
-Frame_2.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame_2.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
+Frame_2.BorderColor3 = Color3.fromRGB(200, 200, 200)
 Frame_2.BorderSizePixel = 0
 Frame_2.Size = UDim2.new(0, 158, 0, 25)
 
-TextLabel.Parent = Frame_2
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0.112792775, 0, -0.0151660154, 0)
-TextLabel.Size = UDim2.new(0, 121, 0, 26)
-TextLabel.Font = Enum.Font.Sarpanch
-TextLabel.Text = "System FLING"
-TextLabel.TextColor3 = Color3.fromRGB(200, 0, 0) -- Vermelho escuro para um visual mais brutal
-TextLabel.TextSize = 25.000
-TextLabel.TextScaled = true
+-- Título ajustado no canto superior esquerdo
+TitleLabel.Parent = Frame_2
+TitleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.BackgroundTransparency = 1.000
+TitleLabel.Position = UDim2.new(0.05, 0, 0.2, 0)
+TitleLabel.Size = UDim2.new(0, 100, 0, 15)
+TitleLabel.Font = Enum.Font.SourceSans
+TitleLabel.Text = "by: System"
+TitleLabel.TextColor3 = Color3.fromRGB(100, 100, 100)
+TitleLabel.TextSize = 12.000
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
--- Botão com gradiente e bordas arredondadas
+-- Botão de Fechar (X)
+CloseButton.Parent = Frame_2
+CloseButton.BackgroundTransparency = 1
+CloseButton.Position = UDim2.new(0.85, 0, 0.2, 0)
+CloseButton.Size = UDim2.new(0, 15, 0, 15)
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(200, 0, 0)
+CloseButton.TextSize = 16
+CloseButton.TextScaled = true
+
+-- Botão de Minimizar (-)
+MinimizeButton.Parent = Frame_2
+MinimizeButton.BackgroundTransparency = 1
+MinimizeButton.Position = UDim2.new(0.72, 0, 0.2, 0)
+MinimizeButton.Size = UDim2.new(0, 15, 0, 15)
+MinimizeButton.Font = Enum.Font.SourceSansBold
+MinimizeButton.Text = "-"
+MinimizeButton.TextColor3 = Color3.fromRGB(100, 100, 100)
+MinimizeButton.TextSize = 16
+MinimizeButton.TextScaled = true
+
+-- Botão principal
 TextButton.Parent = Frame
-TextButton.BackgroundColor3 = Color3.fromRGB(50, 0, 0) -- Tom escuro para o botão
-TextButton.BorderColor3 = Color3.fromRGB(255, 0, 0) -- Contorno vermelho para contraste
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BorderColor3 = Color3.fromRGB(200, 200, 200)
 TextButton.BorderSizePixel = 0
 TextButton.Position = UDim2.new(0.113924049, 0, 0.418181807, 0)
 TextButton.Size = UDim2.new(0, 121, 0, 37)
 TextButton.Font = Enum.Font.SourceSansItalic
 TextButton.Text = "OFF"
-TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextColor3 = Color3.fromRGB(50, 50, 50)
 TextButton.TextSize = 20.000
 TextButton.TextScaled = true
 
 UICornerButton.Parent = TextButton
-UICornerButton.CornerRadius = UDim.new(0, 8) -- Bordas arredondadas no botão
+UICornerButton.CornerRadius = UDim.new(0, 8)
 
 UIGradientButton.Parent = TextButton
 UIGradientButton.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(70, 0, 0)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(140, 0, 0))
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(200, 200, 200))
 }
 
--- Versão no canto inferior direito
-VersionLabel.Parent = Frame
-VersionLabel.BackgroundTransparency = 1.000
-VersionLabel.Position = UDim2.new(0.75, 0, 0.85, 0)
-VersionLabel.Size = UDim2.new(0, 40, 0, 15)
-VersionLabel.Font = Enum.Font.SourceSansItalic
-VersionLabel.Text = "V 1.0"
-VersionLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
-VersionLabel.TextSize = 12.000
+-- Script do Fling:
 
--- Scripts:
+local hiddenfling = false
+local flingThread
 
 local function IIMAWH_fake_script() -- TextButton.LocalScript 
     local script = Instance.new('LocalScript', TextButton)
@@ -102,8 +117,6 @@ local function IIMAWH_fake_script() -- TextButton.LocalScript
     local Players = game:GetService("Players")
     
     local toggleButton = script.Parent
-    local hiddenfling = false
-    local flingThread 
     if not ReplicatedStorage:FindFirstChild("juisdfj0i32i0eidsuf0iok") then
         local detection = Instance.new("Decal")
         detection.Name = "juisdfj0i32i0eidsuf0iok"
@@ -112,7 +125,7 @@ local function IIMAWH_fake_script() -- TextButton.LocalScript
     
     local function fling()
         local lp = Players.LocalPlayer
-        local c, hrp, vel, movel = nil, nil, nil, 10 -- Aumentei o movel para 10
+        local c, hrp, vel, movel = nil, nil, nil, 5 -- Valor original (5)
     
         while hiddenfling do
             RunService.Heartbeat:Wait()
@@ -142,14 +155,25 @@ local function IIMAWH_fake_script() -- TextButton.LocalScript
             hiddenfling = false
         end
     end)
-    
 end
 coroutine.wrap(IIMAWH_fake_script)()
 
-local function QCJQJL_fake_script() -- Frame.LocalScript 
-    local script = Instance.new('LocalScript', Frame)
+-- Função para minimizar
+local minimized = false
 
-    script.Parent.Active = true
-    script.Parent.Draggable = true
-end
-coroutine.wrap(QCJQJL_fake_script)()
+MinimizeButton.MouseButton1Click:Connect(function()
+    if not minimized then
+        Frame:TweenSize(UDim2.new(0, 158, 0, 25), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+        TextButton.Visible = false
+    else
+        Frame:TweenSize(UDim2.new(0, 158, 0, 110), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, 0.3)
+        TextButton.Visible = true
+    end
+    minimized = not minimized
+end)
+
+-- Função para fechar
+CloseButton.MouseButton1Click:Connect(function()
+    hiddenfling = false -- Desativa o fling
+    ScreenGui:Destroy() -- Remove o GUI
+end)
