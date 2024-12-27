@@ -22,10 +22,10 @@ ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 
--- Frame principal com tema claro
+-- Frame principal com tema dark
 Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(240, 240, 240)
-Frame.BorderColor3 = Color3.fromRGB(200, 200, 200)
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)  -- Cor de fundo escura
+Frame.BorderColor3 = Color3.fromRGB(50, 50, 50)  -- Borda mais suave
 Frame.BorderSizePixel = 0
 Frame.Position = UDim2.new(0.4, 0, 0.4, 0)
 Frame.Size = UDim2.new(0, 158, 0, 110)
@@ -37,14 +37,14 @@ UICorner.CornerRadius = UDim.new(0, 10)
 
 UIGradient.Parent = Frame
 UIGradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(230, 230, 230))
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(20, 20, 20))
 }
 
 -- Frame do cabeçalho
 Frame_2.Parent = Frame
-Frame_2.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
-Frame_2.BorderColor3 = Color3.fromRGB(200, 200, 200)
+Frame_2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)  -- Fundo escuro para o cabeçalho
+Frame_2.BorderColor3 = Color3.fromRGB(50, 50, 50)  -- Borda mais suave
 Frame_2.BorderSizePixel = 0
 Frame_2.Size = UDim2.new(0, 158, 0, 25)
 
@@ -56,7 +56,7 @@ TitleLabel.Position = UDim2.new(0.05, 0, 0.2, 0)
 TitleLabel.Size = UDim2.new(0, 100, 0, 15)
 TitleLabel.Font = Enum.Font.SourceSans
 TitleLabel.Text = "by: System"
-TitleLabel.TextColor3 = Color3.fromRGB(100, 100, 100)
+TitleLabel.TextColor3 = Color3.fromRGB(200, 200, 200)  -- Texto claro
 TitleLabel.TextSize = 12.000
 TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -67,7 +67,7 @@ CloseButton.Position = UDim2.new(0.85, 0, 0.2, 0)
 CloseButton.Size = UDim2.new(0, 15, 0, 15)
 CloseButton.Font = Enum.Font.SourceSansBold
 CloseButton.Text = "X"
-CloseButton.TextColor3 = Color3.fromRGB(200, 0, 0)
+CloseButton.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Cor vermelha para fechar
 CloseButton.TextSize = 16
 CloseButton.TextScaled = true
 
@@ -78,20 +78,20 @@ MinimizeButton.Position = UDim2.new(0.72, 0, 0.2, 0)
 MinimizeButton.Size = UDim2.new(0, 15, 0, 15)
 MinimizeButton.Font = Enum.Font.SourceSansBold
 MinimizeButton.Text = "-"
-MinimizeButton.TextColor3 = Color3.fromRGB(100, 100, 100)
+MinimizeButton.TextColor3 = Color3.fromRGB(200, 200, 200)  -- Cor de texto clara
 MinimizeButton.TextSize = 16
 MinimizeButton.TextScaled = true
 
 -- Botão principal
 TextButton.Parent = Frame
-TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BorderColor3 = Color3.fromRGB(200, 200, 200)
+TextButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)  -- Fundo do botão escuro
+TextButton.BorderColor3 = Color3.fromRGB(100, 100, 100)  -- Borda suave
 TextButton.BorderSizePixel = 0
 TextButton.Position = UDim2.new(0.113924049, 0, 0.418181807, 0)
 TextButton.Size = UDim2.new(0, 121, 0, 37)
 TextButton.Font = Enum.Font.SourceSansItalic
 TextButton.Text = "OFF"
-TextButton.TextColor3 = Color3.fromRGB(50, 50, 50)
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Texto claro
 TextButton.TextSize = 20.000
 TextButton.TextScaled = true
 
@@ -100,8 +100,8 @@ UICornerButton.CornerRadius = UDim.new(0, 8)
 
 UIGradientButton.Parent = TextButton
 UIGradientButton.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(200, 200, 200))
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(60, 60, 60)),  -- Gradiente escuro
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(40, 40, 40))
 }
 
 -- Script do Fling:
@@ -177,3 +177,4 @@ CloseButton.MouseButton1Click:Connect(function()
     hiddenfling = false -- Desativa o fling
     ScreenGui:Destroy() -- Remove o GUI
 end)
+
